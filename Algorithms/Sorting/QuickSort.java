@@ -1,3 +1,5 @@
+package Sorting;
+
 import java.util.Arrays;
 class QuickSort {
     // QuickSort - Divide and Conquer Algorithm

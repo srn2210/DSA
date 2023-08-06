@@ -1,3 +1,5 @@
+package Sorting;
+
 import java.util.Arrays;
 class MergeSort {
     // MergeSort - Divide and Conquer Algorithm
