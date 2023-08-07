@@ -38,7 +38,7 @@ class SieveOfEratosthenes {
     }
     public static void main(String[] args) {
         SieveOfEratosthenes obj = new SieveOfEratosthenes();
-        System.out.println(obj.listOfPrimes(10000));
+        System.out.println(obj.listOfPrimes(100));
         System.out.println(obj.primeFactors(42));
     }
 }
