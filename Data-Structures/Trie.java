@@ -1,4 +1,10 @@
-class StringTrie {
+interface Trie {
+    default void insert(String str) {}
+    default void insert(int num) {}
+    default int query(int num) {return 0;}
+    default boolean query(String str) {return false;}
+}
+class StringTrie implements Trie {
     static class TrieNode {
         TrieNode[] arr;
         boolean isEnd;
@@ -26,7 +32,8 @@ class StringTrie {
     StringTrie() {
         root = new TrieNode();
     }
-    void insert(String str) {
+    @Override
+    public void insert(String str) {
         var curr = root;
         for(char ch : str.toCharArray()) {
             int idx = ch - 'a';
@@ -35,7 +42,8 @@ class StringTrie {
         }
         curr.setEnd();
     }
-    boolean search(String str) {
+    @Override
+    public boolean query(String str) {
         var curr = root;
         for(char ch : str.toCharArray()) {
             int idx = ch - 'a';
@@ -46,15 +54,15 @@ class StringTrie {
     }
 
     public static void main(String[] args) {
-        StringTrie trie = new StringTrie();
+        Trie trie = new StringTrie();
         trie.insert("apple");
         trie.insert("orange");
-        System.out.println(trie.search("apple"));
-        System.out.println(trie.search("mango"));
-        System.out.println(trie.search("orange"));
+        System.out.println(trie.query("apple"));
+        System.out.println(trie.query("mango"));
+        System.out.println(trie.query("orange"));
     }
 }
-class XORTrie {
+class XORTrie implements Trie {
     static class TrieNode {
         TrieNode[] arr;
         boolean isEnd;
@@ -76,7 +84,8 @@ class XORTrie {
     XORTrie() {
         root = new TrieNode();
     }
-    void insert(int num) {
+    @Override
+    public void insert(int num) {
         var curr = root;
         for(int i=31; i>=0; i--) {
             int bit = ((num >> i) & 1);
@@ -84,7 +93,8 @@ class XORTrie {
             curr = curr.get(bit);
         }
     }
-    int query(int num) {
+    @Override
+    public int query(int num) {
         var curr = root;
         int ans = 0;
         for(int i=31; i>=0; i--) {
@@ -101,7 +111,7 @@ class XORTrie {
     }
 
     public static void main(String[] args) {
-        XORTrie trie = new XORTrie();
+        Trie trie = new XORTrie();
         trie.insert(7);
         trie.insert(4);
         System.out.println(trie.query(8));
