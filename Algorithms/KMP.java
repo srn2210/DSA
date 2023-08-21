@@ -1,14 +1,15 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class KMP {
     List<Integer> searchSubstring(String text, String pattern) {
         int m = text.length(), n = pattern.length();
         var ans = new ArrayList<Integer>();
-        int[] pi = new int[m];
+        int[] pi = new int[n];
         int left = 0, right = 1;
-        while(right < m) {
-            if(text.charAt(left) == text.charAt(right)) {
+        while(right < n) {
+            if(pattern.charAt(left) == pattern.charAt(right)) {
                 pi[right++] = ++left;
             }
             else if(left != 0){
@@ -18,6 +19,7 @@ public class KMP {
                 right++;
             }
         }
+        System.out.println(Arrays.toString(pi));
         int txtPtr = 0, patPtr = 0;
         while(txtPtr < m) {
             if(text.charAt(txtPtr) == pattern.charAt(patPtr)) {
@@ -36,7 +38,7 @@ public class KMP {
         return ans;
     }
     public static void main(String[] args) {
-        String pattern = "abcde";
+        String pattern = "aab";
         String text = "abcdabcdabcdabacdabdcdeeabcdeaddcvdeacvdeavcdeabcde";
         System.out.println(new KMP().searchSubstring(text, pattern));
     }
